@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HW7.css">
+    <title>Profile Page</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="photo-panel">
+            <img src="picture.jpg" alt="profile photo">
+        </div>
+        <div class="contact-info">
+            <h1 id="name">Gabriel</h1>
+            <button id="edit-name-btn">Edit</button>
+            <h2>ABOUT ME</h2>
+            <p>
+                I am a freshman in the Department of Money and Banking at NCCU. 
+                I am interested in studying programming and Data analysis. 
+                I have experience in writing Java, HTML, CSS and Python.
+            </p>
+            <h2>CONTACT</h2>
+            <p>112302064@g.nccu.edu.tw</p>
+            <img src="NCCU.png" alt="University Logo">
+        </div>
+
+        <div class="education">
+            <h2>Education</h2>
+            <ul>
+                <li>2023 - now: National Chengchi University, Department of MAB, Money and Banking</li>
+                <li>2021 - 2023: Kaohsiung Municipal Kaohsiung Senior High School</li>
+                <li>2018 - 2021: Middle School Graduation, Started developing an interest in mathmatic</li>
+            </ul>
+        </div>
+        
+        <div class="homework-list">
+            <h2>Homework List</h2>
+            <ul>
+                 <li><strong>HW1</strong> - <a href="https://github.com/orniste/HW2.git">https://github.com/orniste/HW2.git</a></li>
+                <li><strong>HW2</strong> - <a href="https://github.com/orniste/HW2-2.git">https://github.com/orniste/HW2-2.git</a></li>
+                 <li><strong>HW3</strong> - <a href="https://github.com/orniste/HW3.git">https://github.com/orniste/HW3.git</a></li>
+                 <li><strong>HW4</strong> - <a href="https://github.com/orniste/112302064_HW4.git">https://github.com/orniste/112302064_HW4.git</a></li>
+                <li><strong>Lab1</strong> - <a href="https://github.com/orniste/112302064_LAB1.git">https://github.com/orniste/112302064_LAB1.git</a></li>
+            </ul>
+        </div>
+        
+        <div class="favorite-music">
+            <h2>Favorite Music</h2>
+            <div class="music-row" id="music-list">
+                <div class="music-item">
+                    <a href="https://open.spotify.com/track/1nhGHjPwkHphiEUcY79eBT?si=dcbd659ec1984758" target="_blank">
+                        <img src="spotify.jpg" alt="album">
+                    </a>
+                    <p>煙癮</p>
+                </div>
+                <div class="music-item">
+                    <a href="https://open.spotify.com/track/01clQd7YUW4nEre2I8jo7d?si=9c168fc223924409" target="_blank">
+                        <img src="spotify.jpg" alt="album">
+                    </a>
+                    <p>指紋</p>
+                </div>
+                <div class="music-item">
+                    <a href="https://open.spotify.com/track/1rDaBTdLyld8Bi0rDrJy33?si=b1b97ba9f9944ce4" target="_blank">
+                        <img src="spotify.jpg" alt="album">
+                    </a>
+                    <p>藉口</p>
+                </div>
+                <div class="music-item">
+                    <a href="https://open.spotify.com/track/7Ch8CWubyrCrz3A9IqCySR?si=6612332198574099" target="_blank">
+                        <img src="spotify.jpg" alt="album">
+                    </a>
+                    <p>和你</p>
+                </div>
+            </div>
+            <button id="add-music-btn">Add Music</button>
+        </div>
+    </div>
+
+    <script>
+        const editNameBtn = document.getElementById('edit-name-btn');
+        const nameElement = document.getElementById('name');
+        let isEditing = false;
+
+        editNameBtn.addEventListener('click', () => {
+            if (isEditing) {
+                const inputField = document.getElementById('name-input');
+                nameElement.textContent = inputField.value;
+                editNameBtn.textContent = 'Edit';
+            } else {
+                const currentName = nameElement.textContent;
+                nameElement.innerHTML = `<input id="name-input" type="text" value="${currentName}">`;
+                editNameBtn.textContent = 'Save';
+            }
+            isEditing = !isEditing;
+        });
+
+        const addMusicBtn = document.getElementById('add-music-btn');
+        const musicList = document.getElementById('music-list');
+
+        addMusicBtn.addEventListener('click', () => {
+            const formHtml = `
+                <div id="music-form">
+                    <input id="music-link" type="text" placeholder="Enter music link">
+                    <input id="music-name" type="text" placeholder="Enter music name">
+                    <button id="submit-music">Submit</button>
+                    <button id="cancel-music">Cancel</button>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', formHtml);
+
+            const submitMusic = document.getElementById('submit-music');
+            const cancelMusic = document.getElementById('cancel-music');
+
+            submitMusic.addEventListener('click', () => {
+                const musicLink = document.getElementById('music-link').value;
+                const musicName = document.getElementById('music-name').value;
+
+                if (musicLink && musicName) {
+                    const musicItem = document.createElement('div');
+                    musicItem.className = 'music-item';
+                    musicItem.innerHTML = `
+                        <a href="${musicLink}" target="_blank">
+                            <img src="spotify.jpg" alt="album">
+                        </a>
+                        <p>${musicName}</p>
+                    `;
+                    musicList.appendChild(musicItem);
+                    document.getElementById('music-form').remove();
+                } else {
+                    alert('Please fill out all fields.');
+                }
+            });
+
+            cancelMusic.addEventListener('click', () => {
+                document.getElementById('music-form').remove();
+            });
+        });
+    </script>
+</body>
+</html>

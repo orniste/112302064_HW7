@@ -1,0 +1,146 @@
+body {
+    background-color: #eeede1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "photo education"
+        "photo homework"
+        "photo music";
+    background-color: #fff;
+    width: 1000px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    gap: 20px;
+    padding: 20px;
+}
+
+.photo-panel {
+    grid-area: photo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden; /* 避免圖片超出容器 */
+}
+
+.photo-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持容器比例並裁切圖片 */
+    object-position: center; /* 圖片內容居中 */
+    border-radius: 8px;
+}
+
+.contact-info {
+    grid-area: photo;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.contact-info h2 {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.contact-info p {
+    font-size: 0.9em;
+    margin: 5px 0;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.education, .favorite-music {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.education ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; /* 移除項目符號 */
+    line-height: 1.6; /* 增加行距 */
+    text-align: justify; /* 文字左右對齊 */
+}
+
+.education li {
+    margin-bottom: 10px; /* 每項間距 */
+}
+
+
+.favorite-music {
+    grid-area: music;
+}
+
+.favorite-music .music-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.music-item img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.music-item p {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.homework-list {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word; /* 長文字換行 */
+    overflow: hidden; /* 隱藏溢出的內容 */
+}
+
+.homework-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.homework-list li {
+    margin-bottom: 10px; /* 每個列表項目間距 */
+}
+
+
+a {
+    text-decoration: none; 
+    color: #007BFF; 
+    transition: color 0.3s ease; 
+}
+
+a:hover {
+    color: #0056b3; 
+
+a:visited {
+    color: #6c757d; 
